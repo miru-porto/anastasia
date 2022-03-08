@@ -39,11 +39,11 @@ const App = () => {
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
-        <Input
-          placeholder="Type here"
+      <Input
+          placeholder='Type here'
           autoCorrect={false}
           autoFocus={true}
-          placeholderTextColor="#841584"
+          placeholderTextColor='#841584'
           style={styles.textInput}
           value={text}
           handleOnChangeText={handleOnChangeInput}
