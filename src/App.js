@@ -4,6 +4,7 @@ import {View, Button, Text, FlatList, TouchableOpacity} from 'react-native';
 
 import Input from './components/atoms/Input/index';
 import CustomModal from './components/molecules/CustomModal';
+import FlatList from './components/molecules/FlatList';
 import {styles} from './styles';
 
 const App = () => {
@@ -38,14 +39,14 @@ const App = () => {
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
-        <TextInput
+        <Input
           placeholder="Type here"
-          placeholderTextColor={'#841584'}
           autoCorrect={false}
           autoFocus={true}
+          placeholderTextColor="#841584"
           style={styles.textInput}
           value={text}
-          onChangeText={handleOnChangeInput}
+          handleOnChangeText={handleOnChangeInput}
         />
 
         <Button title="Add" color="#841584" onPress={() => addItem()} />
