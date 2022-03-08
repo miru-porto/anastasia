@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 
-import {View, Button, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Button, Text, FlatList, Modal, Pressable, TouchableOpacity} from 'react-native';
 
 import Input from './components/atoms/Input/index';
 import CustomModal from './components/molecules/CustomModal';
-import FlatList from './components/molecules/FlatList';
 import {styles} from './styles';
 
 const App = () => {
   const [text, setText] = useState('');
   const [textList, setTextList] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalConfirmVisible, setModalConfirmVisible] = useState([false]);
   const [selectedItem, setSelectedItem] = useState({});
 
   const handleOnChangeInput = value => {
@@ -19,6 +19,7 @@ const App = () => {
 
   const addItem = () => {
     if (text !== '') {
+      setModalConfirmVisible(true);
       setTextList([...textList, {id: textList.length + 1, value: text}]);
       setText('');
     }
@@ -39,11 +40,11 @@ const App = () => {
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
-      <Input
-          placeholder='Type here'
+        <Input
+          placeholder="Type here"
           autoCorrect={false}
           autoFocus={true}
-          placeholderTextColor='#841584'
+          placeholderTextColor="#841584"
           style={styles.textInput}
           value={text}
           handleOnChangeText={handleOnChangeInput}
