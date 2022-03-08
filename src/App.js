@@ -1,15 +1,9 @@
 import React, {useState} from 'react';
 
-import {
-  Text,
-  View,
-  Button,
-  TextInput,
-  FlatList,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
+import {View, Button, Text, FlatList, TouchableOpacity} from 'react-native';
 
+import Input from './components/atoms/Input/index';
+import CustomModal from './components/molecules/CustomModal';
 import {styles} from './styles';
 
 const App = () => {
@@ -57,10 +51,6 @@ const App = () => {
         <Button title="Add" color="#841584" onPress={() => addItem()} />
       </View>
 
-      <View>
-        <Text style={styles.textH1}> Más populares</Text>
-      </View>
-
       <View style={styles.containerList}>
         <FlatList
           data={textList}
@@ -73,36 +63,16 @@ const App = () => {
         />
       </View>
 
-      <Modal animationType="slide" visible={modalVisible} transparent={true}>
-        <View style={styles.modalContainerContent}>
-          <View style={styles.modaTitle}>
-            <Text>Description</Text>
-          </View>
-          <View style={styles.modalContent}>
-            <Text>Do you want to delete this item?</Text>
-            <Text style={styles}>{selectedItem.value}</Text>
-          </View>
-          <View style={styles.modalButton}>
-            <Button
-              title="Yes"
-              color="#841584"
-              onPress={() => handleDeleteItem(selectedItem.id)}
-            />
-          </View>
-        </View>
-      </Modal>
+      <CustomModal
+        visible={modalVisible}
+        title="Delete Item"
+        description="Are you sure you want to delete this item?"
+        selectedItem={selectedItem}
+        buttonText="Yes"
+        onHandleDeleteItem={handleDeleteItem}
+      />
     </View>
   );
 };
 
 export default App;
-
-/*
-
-{textList.length > 0 &&
-          textList.map(item => (
-            <Text key={item.id} style={styles.textList}>
-              {item.value}
-            </Text>
-          ))}
-*/
